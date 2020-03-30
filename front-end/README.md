@@ -1,1 +1,0 @@
-# omnistack11-front
