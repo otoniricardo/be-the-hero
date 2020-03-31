@@ -1,4 +1,5 @@
 import express from 'express';
+import { errors } from 'celebrate';
 import { resolve } from 'path';
 import cors from 'cors';
 import routes from './routes';
@@ -8,6 +9,7 @@ class App {
     this.server = express();
     this.middlewares();
     this.routes();
+    this.handleValidationErrors();
   }
 
   middlewares() {
@@ -21,6 +23,10 @@ class App {
 
   routes() {
     this.server.use(routes);
+  }
+
+  handleValidationErrors() {
+    this.server.use(errors());
   }
 }
 export default new App().server;
